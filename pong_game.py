@@ -99,7 +99,7 @@ pen.color('red')
 pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
-pen.write("You: 0  Computer: 0",align='center',font=('courier',24,'normal'))
+pen.write("You: 0  Computer: 0",align='center',font=('courier',23,'normal'))
     
 #press Up to move padel_a up
 wn.listen()
