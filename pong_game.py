@@ -22,13 +22,13 @@ def ball_bouncing():
         ball.dx *= -1
         score_1+=1
         pen.clear()
-        pen.write(f"Player1: {score_1}  Player2: {score_2}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
+        pen.write(f"You: {score_1}  Computer: {score_2}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
         score_2+=1
         pen.clear()
-        pen.write("Player1: {}  Player2: {}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
+        pen.write("You: {}  Computer: {}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
         
 #function to bounce the ball against the paddle:
 def ball_and_paddle():
@@ -99,7 +99,7 @@ pen.color('red')
 pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
-pen.write("Player1: 0  Player2: 0",align='center',font=('courier',24,'normal'))
+pen.write("You: 0  Computer: 0",align='center',font=('courier',24,'normal'))
     
 #press Up to move padel_a up
 wn.listen()
