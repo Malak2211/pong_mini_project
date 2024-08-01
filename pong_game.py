@@ -4,9 +4,13 @@ def ball_movement():
     x=ball.xcor()
     ball.setx(x+ball.dx)
     ball.sety(y+ball.dy)
-    
+
+#score
+score_1=0
+score_2=0
 # bouncing the ball against the wall  
 def ball_bouncing():
+    global score_1,score_2
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
@@ -16,9 +20,15 @@ def ball_bouncing():
     if ball.xcor() > 390:  
         ball.goto(0,0)
         ball.dx *= -1
+        score_1+=1
+        pen.clear()
+        pen.write(f"Player1: {score_1}  Player2: {score_2}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
+        score_2+=1
+        pen.clear()
+        pen.write("Player1: {}  Player2: {}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
         
 #function to bounce the ball against the paddle:
 def ball_and_paddle():
@@ -47,17 +57,19 @@ import time
 
 # Background screen set up
 wn = turtle.Screen()
-wn.bgcolor("blue")
+wn.bgcolor("light blue")
 wn.title("PONG GAME")
 wn.setup(width=800, height=600)
 wn.tracer(0)
+
+
 
 # paddle_a
 paddle_a = turtle.Turtle()
 paddle_a.speed(0)
 paddle_a.shape("square")
 paddle_a.shapesize(5,1)
-paddle_a.color("green")
+paddle_a.color("blue")
 paddle_a.penup()
 paddle_a.goto(-350, 0)
 
@@ -79,6 +91,15 @@ ball.penup()
 ball.goto(0, 0)
 ball.dx=2
 ball.dy=2
+
+#scoring system function
+pen=turtle.Turtle()
+pen.speed(0)
+pen.color('red')
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("Player1: 0  Player2: 0",align='center',font=('courier',24,'normal'))
     
 #press Up to move padel_a up
 wn.listen()
