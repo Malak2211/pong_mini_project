@@ -86,6 +86,12 @@ def ball_movement():
 
 
 
+
+
+#score
+score_1=0
+score_2=0
+
 # bouncing the ball against the wall  
 def ball_bouncing():
     global score_1,score_2
@@ -100,13 +106,22 @@ def ball_bouncing():
         ball.dx *= -1
         score_1+=1
         pen.clear()
+
         pen.write(f"YOU: {score_1}  COMPUTER: {score_2}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
     if ball.xcor() < -350:
+
+        pen.write(f"You: {score_1}  Computer: {score_2}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
+    if ball.xcor() < -390:
+
         ball.goto(0,0)
         ball.dx *= -1
         score_2+=1
         pen.clear()
+
         pen.write("YOU: {}  COMPUTER: {}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
+
+        pen.write("You: {}  Computer: {}".format(score_1,score_2),align='center',font=('courier',23,'normal'))
+
         
 #function to bounce the ball against the paddle:
 def ball_and_paddle():
@@ -121,6 +136,7 @@ def move_ball():
     
 
 
+
 #score
 score_1=0
 score_2=0
@@ -132,6 +148,25 @@ pen.penup()
 pen.hideturtle()
 pen.goto(0,260)
 pen.write("YOU: 0  COMPUTER: 0",align='center',font=('courier',24,'normal'))
+
+# Background screen set up
+wn = turtle.Screen()
+wn.bgcolor("light blue")
+wn.title("PONG GAME")
+wn.setup(width=800, height=600)
+wn.tracer(0)
+
+
+
+# paddle_a
+paddle_a = turtle.Turtle()
+paddle_a.speed(0)
+paddle_a.shape("square")
+paddle_a.shapesize(5,1)
+paddle_a.color("blue")
+paddle_a.penup()
+paddle_a.goto(-350, 0)
+
 
 #ai implementation
 def calculate_ball_trajectory():
@@ -148,6 +183,30 @@ def calculate_ball_trajectory():
     ball.setpos(initial_ball_pos)
     ball.setheading(initial_ball_angle)
     return x,y
+
+
+# ball
+ball= turtle.Turtle()
+ball.speed(0)
+ball.shape("circle")
+ball.color("red")
+ball.penup()
+ball.goto(0, 0)
+ball.dx=2
+ball.dy=2
+
+#scoring system function
+pen=turtle.Turtle()
+pen.speed(0)
+pen.color('red')
+pen.penup()
+pen.hideturtle()
+pen.goto(0,260)
+pen.write("You: 0  Computer: 0",align='center',font=('courier',24,'normal'))
+    
+#press Up to move padel_a up
+wn.listen()
+wn.onkeypress(paddle_a_up,"Up")
 
 
 
